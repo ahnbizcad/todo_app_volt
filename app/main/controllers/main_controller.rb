@@ -4,7 +4,12 @@ module Main
     model :store
 
     def index
-      # Add code for when the index view is loaded
+      StatTask.show_stats #instance method on class level is volt convention.
+      .then do |stats|
+        page._info = stats
+      end.fail do |error|
+        page._info  = error
+      end
     end
 
     def about
